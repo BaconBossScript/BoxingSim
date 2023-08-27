@@ -1,0 +1,87 @@
+if game.PlaceId == 4058282580 then
+ 
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "BaconBoss Hub | BOXING SIMULATOR! 🥊", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+     
+_G.glove = true
+_G.dna = true
+_G.egg = true
+_G.sell = true
+
+function glove()
+      while _G.glove == true do
+      game:GetService("ReplicatedStorage").Events.BuyAllGlove:FireServer()
+      wait(0.1)
+    end
+end
+
+function dna()
+     while _G.dna == true do
+     game:GetService("ReplicatedStorage").Events.BuyAllDNA:FireServer() 
+      wait(0.1)
+    end
+end
+
+function egg()
+     while _G.egg == true do
+     game:GetService("ReplicatedStorage").Events.BuyEgg:FireServer("basic",false)
+     wait(0.0001)
+    end
+end
+
+function sell()
+      while _G.sell == true do
+     game:GetService("ReplicatedStorage").Events.SellRequest:FireServer() 
+     wait(0.0001)
+    end
+end
+
+local MainTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local EggTab = Window:MakeTab({
+	Name = "Egg",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+MainTab:AddToggle({
+	Name = "Auto Buy All Gloves",
+	Default = false,
+	Callback = function(Value)
+		_G.glove = Value
+        glove()
+	end    
+})
+
+MainTab:AddToggle({
+	Name = "Auto Buy All DNA",
+	Default = false,
+	Callback = function(Value)
+		_G.dna = Value
+        dna()
+	end    
+})
+
+MainTab:AddToggle({
+	Name = "Auto Sell",
+	Default = false,
+	Callback = function(Value)
+		_G.sell = Value
+        sell()
+	end    
+})
+
+EggTab:AddToggle({
+	Name = "Auto Hatch Cheapest Egg",
+	Default = false,
+	Callback = function(Value)
+		_G.egg = Value
+        egg()
+	end    
+})
+
+end

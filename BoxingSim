@@ -7,6 +7,14 @@ _G.glove = true
 _G.dna = true
 _G.egg = true
 _G.sell = true
+_G.train = true
+
+function train()
+	 while _G.train == true do
+		game:GetService("VirtualUser"):ClickButton1(Vector2.new(9e9, 9e9))
+	 wait(0.000000000000000000000000001)
+	end
+end
 
 function glove()
       while _G.glove == true do
@@ -46,6 +54,15 @@ local EggTab = Window:MakeTab({
 	Name = "Egg",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
+})
+
+MainTab:AddToggle({
+	Name = "Auto Punch",
+	Default = false,
+	Callback = function(Value)
+		_G.train = Value
+        train()
+	end    
 })
 
 MainTab:AddToggle({
